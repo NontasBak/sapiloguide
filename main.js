@@ -4,6 +4,7 @@ import fs from "fs";
 import fsExtra from "fs-extra";
 import path from "path";
 import { ImagesToPDF } from "images-pdf";
+import PDFMerger from "pdf-merger-js";
 
 async function build() {
     const lessons = await fs.promises.readdir("./src/");
@@ -49,7 +50,34 @@ async function build() {
                 console.log(`Finished ${exam}/${examSolution}`);
             }
         }
+
+        convertToPDF(lesson, exams);
     }
+}
+
+async function convertToPDF(lesson, exams) {
+    await fsExtra.ensureDir("./tempFolder");
+
+    for await (let exam of exams) {
+        const examImages = await fs.promises.readdir(
+            `./resized_images/${lesson}/${exam}/`
+        );
+
+        for await (let examImage of examImages) {
+            await fsExtra.move(
+                `./resized_images/${lesson}/${exam}/${examImage}`,
+                `./tempFolder/${exam + "_" + examImage}`,
+                { overwrite: true }
+            );
+        }
+    }
+
+    new ImagesToPDF().convertFolderToPDF(
+        "./tempFolder",
+        `./pdfs/${lesson}.pdf`
+    );
+    
+    await fsExtra.emptyDir("./tempFolder")
 }
 
 //clear old images
@@ -57,5 +85,3 @@ fsExtra.emptyDirSync("./exported_images");
 fsExtra.emptyDirSync("./resized_images");
 
 build();
-
-// new ImagesToPDF().convertFolderToPDF("./resized_images", "./pdfs/output.pdf");
