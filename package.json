@@ -13,6 +13,7 @@
   "license": "ISC",
   "devDependencies": {
     "@kitschpatrol/tldraw-cli": "^4.3.2",
+    "fs-extra": "^11.2.0",
     "image-to-pdf": "^2.0.0",
     "images-pdf": "^1.0.3",
     "jimp": "^0.22.12"
