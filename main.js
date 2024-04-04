@@ -6,23 +6,23 @@ import path from "path";
 import { ImagesToPDF } from "images-pdf";
 
 async function build() {
-    const lessons = fs.readdirSync("./src/");
+    const lessons = await fs.promises.readdir("./src/");
 
-    for (let lesson of lessons) {
-        fs.mkdirSync(`./exported_images/${lesson}`);
-        fs.mkdirSync(`./resized_images/${lesson}`);
+    for await (let lesson of lessons) {
+        await fs.promises.mkdir(`./exported_images/${lesson}`);
+        await fs.promises.mkdir(`./resized_images/${lesson}`);
 
-        const exams = fs.readdirSync(`./src/${lesson}/`);
+        const exams = await fs.promises.readdir(`./src/${lesson}/`);
 
-        for (let exam of exams) {
-            fs.mkdirSync(`./exported_images/${lesson}/${exam}`);
-            fs.mkdirSync(`./resized_images/${lesson}/${exam}`);
+        for await (let exam of exams) {
+            await fs.promises.mkdir(`./exported_images/${lesson}/${exam}`);
+            await fs.promises.mkdir(`./resized_images/${lesson}/${exam}`);
 
             const examSolutions = await fs.promises.readdir(
                 `./src/${lesson}/${exam}/`
             );
 
-            for (let examSolution of examSolutions) {
+            for await (let examSolution of examSolutions) {
                 const imagePath = await tldrawToImage(
                     `./src/${lesson}/${exam}/${examSolution}`,
                     {
@@ -57,12 +57,12 @@ async function build() {
 async function convertToPDF(lesson, exams) {
     await fsExtra.ensureDir("./tempFolder");
 
-    for (let exam of exams) {
-        const examImages = fs.readdirSync(
+    for await (let exam of exams) {
+        const examImages = await fs.promises.readdir(
             `./resized_images/${lesson}/${exam}/`
         );
 
-        for (let examImage of examImages) {
+        for await (let examImage of examImages) {
             await fsExtra.move(
                 `./resized_images/${lesson}/${exam}/${examImage}`,
                 `./tempFolder/${exam + "_" + examImage}`,
@@ -75,8 +75,8 @@ async function convertToPDF(lesson, exams) {
         "./tempFolder",
         `./pdfs/${lesson}.pdf`
     );
-
-    await fsExtra.emptyDir("./tempFolder");
+    
+    await fsExtra.emptyDir("./tempFolder")
 }
 
 //clear old images

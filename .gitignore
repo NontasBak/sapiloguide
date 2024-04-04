@@ -1,3 +1,7 @@
+# Custom
+exported_images/*
+resized_images/*
+
 # Logs
 logs
 *.log
