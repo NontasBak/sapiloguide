@@ -16,7 +16,6 @@
     "fs-extra": "^11.2.0",
     "image-to-pdf": "^2.0.0",
     "images-pdf": "^1.0.3",
-    "jimp": "^0.22.12",
-    "pdf-merger-js": "^5.1.1"
+    "jimp": "^0.22.12"
   }
 }
