@@ -8,21 +8,22 @@ import { ImagesToPDF } from "images-pdf";
 async function build() {
     const lessons = await fs.promises.readdir("./src/");
 
-    for await (let lesson of lessons) {
+    for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
         await fs.promises.mkdir(`./resized_images/${lesson}`);
 
         const exams = await fs.promises.readdir(`./src/${lesson}/`);
 
-        let i = exams.length;
-        for await (let exam of exams) {
+        let pageOrder = exams.length;
+        for (let exam of exams) {
             await convertTldrToImages(
                 `./src/${lesson}/${exam}`,
                 `./exported_images/${lesson}/`,
-                i,
+                pageOrder,
                 exam
             );
-            i--;
+
+            pageOrder--;
         }
 
         await resizeImages(
@@ -53,13 +54,13 @@ async function resizeImages(fromPath, toPath) {
     }
 }
 
-async function convertTldrToImages(fromPath, toPath, totalExams, exam) {
+async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
         dark: true,
         pages: true,
-        name: `[${totalExams}]-${path.parse(exam).name}`
+        name: `[${pageOrder}]-${path.parse(exam).name}`
     });
 }
 
