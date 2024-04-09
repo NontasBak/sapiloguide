@@ -15,68 +15,47 @@ async function build() {
         const exams = await fs.promises.readdir(`./src/${lesson}/`);
 
         for await (let exam of exams) {
-            await fs.promises.mkdir(`./exported_images/${lesson}/${exam}`);
-            await fs.promises.mkdir(`./resized_images/${lesson}/${exam}`);
-
-            const examSolutions = await fs.promises.readdir(
-                `./src/${lesson}/${exam}/`
+            await convertTldrToImages(
+                `./src/${lesson}/${exam}`,
+                `./exported_images/${lesson}/`
             );
-
-            for await (let examSolution of examSolutions) {
-                const imagePath = await tldrawToImage(
-                    `./src/${lesson}/${exam}/${examSolution}`,
-                    {
-                        format: "png",
-                        output: `./exported_images/${lesson}/${exam}/`,
-                        dark: true,
-                    }
-                );
-
-                Jimp.read(
-                    `./exported_images/${lesson}/${exam}/${
-                        path.parse(examSolution).name
-                    }.png`
-                ).then((image) => {
-                    image
-                        .scaleToFit(1000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                        .write(
-                            `./resized_images/${lesson}/${exam}/${
-                                path.parse(examSolution).name
-                            }.png`
-                        );
-                });
-
-                console.log(`Finished ${exam}/${examSolution}`);
-            }
         }
 
-        convertToPDF(lesson, exams);
+        await resizeImages(
+            `./exported_images/${lesson}`,
+            `./resized_images/${lesson}`
+        );
+
+        //Glitch (?) with node, if setTimeout is removed it will not add the very last page
+        setTimeout(() => {
+            convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
+        }, 0);
     }
 }
 
-async function convertToPDF(lesson, exams) {
-    await fsExtra.ensureDir("./tempFolder");
+function convertToPDF(fromPath, toPath) {
+    new ImagesToPDF().convertFolderToPDF(`${fromPath}`, `${toPath}`);
+}
 
-    for await (let exam of exams) {
-        const examImages = await fs.promises.readdir(
-            `./resized_images/${lesson}/${exam}/`
-        );
+async function resizeImages(fromPath, toPath) {
+    const exportedImages = await fs.promises.readdir(`${fromPath}`);
 
-        for await (let examImage of examImages) {
-            await fsExtra.move(
-                `./resized_images/${lesson}/${exam}/${examImage}`,
-                `./tempFolder/${exam + "_" + examImage}`,
-                { overwrite: true }
-            );
-        }
+    for (let exportedImage of exportedImages) {
+        await Jimp.read(`${fromPath}/${exportedImage}`).then((image) => {
+            image
+                .scaleToFit(1000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                .write(`${toPath}/${exportedImage}`);
+        });
     }
+}
 
-    new ImagesToPDF().convertFolderToPDF(
-        "./tempFolder",
-        `./pdfs/${lesson}.pdf`
-    );
-    
-    await fsExtra.emptyDir("./tempFolder")
+async function convertTldrToImages(fromPath, toPath) {
+    const imagePath = await tldrawToImage(`${fromPath}`, {
+        format: "png",
+        output: `${toPath}`,
+        dark: true,
+        pages: true,
+    });
 }
 
 //clear old images
