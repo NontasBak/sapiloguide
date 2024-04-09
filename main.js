@@ -14,11 +14,15 @@ async function build() {
 
         const exams = await fs.promises.readdir(`./src/${lesson}/`);
 
+        let i = exams.length;
         for await (let exam of exams) {
             await convertTldrToImages(
                 `./src/${lesson}/${exam}`,
-                `./exported_images/${lesson}/`
+                `./exported_images/${lesson}/`,
+                i,
+                exam
             );
+            i--;
         }
 
         await resizeImages(
@@ -49,12 +53,13 @@ async function resizeImages(fromPath, toPath) {
     }
 }
 
-async function convertTldrToImages(fromPath, toPath) {
+async function convertTldrToImages(fromPath, toPath, totalExams, exam) {
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
         dark: true,
         pages: true,
+        name: `[${totalExams}]-${path.parse(exam).name}`
     });
 }
 
