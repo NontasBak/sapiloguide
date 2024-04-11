@@ -31,10 +31,8 @@ async function build() {
             `./resized_images/${lesson}`
         );
 
-        //Glitch (?) with node, if setTimeout is removed it will not add the very last page
-        setTimeout(() => {
-            convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
-        }, 0);
+
+        convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
     }
 }
 
@@ -44,14 +42,23 @@ function convertToPDF(fromPath, toPath) {
 
 async function resizeImages(fromPath, toPath) {
     const exportedImages = await fs.promises.readdir(`${fromPath}`);
+    const promises = [];
 
     for (let exportedImage of exportedImages) {
-        await Jimp.read(`${fromPath}/${exportedImage}`).then((image) => {
-            image
-                .scaleToFit(1000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                .write(`${toPath}/${exportedImage}`);
+        const promise = Jimp.read(`${fromPath}/${exportedImage}`).then((image) => {
+            return new Promise((resolve, reject) => {
+                image
+                    .scaleToFit(3000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                    .write(`${toPath}/${exportedImage}`, (err) => {
+                        if (err) reject(err);
+                        else resolve();
+                    });
+            });
         });
+        promises.push(promise);
     }
+
+    await Promise.all(promises);
 }
 
 async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
@@ -69,3 +76,5 @@ fsExtra.emptyDirSync("./exported_images");
 fsExtra.emptyDirSync("./resized_images");
 
 build();
+
+
