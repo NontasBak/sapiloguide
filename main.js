@@ -45,16 +45,18 @@ async function resizeImages(fromPath, toPath) {
     const promises = [];
 
     for (let exportedImage of exportedImages) {
-        const promise = Jimp.read(`${fromPath}/${exportedImage}`).then((image) => {
-            return new Promise((resolve, reject) => {
-                image
-                    .scaleToFit(3000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                    .write(`${toPath}/${exportedImage}`, (err) => {
-                        if (err) reject(err);
-                        else resolve();
-                    });
-            });
-        });
+        const promise = Jimp.read(`${fromPath}/${exportedImage}`).then(
+            (image) => {
+                return new Promise((resolve, reject) => {
+                    image
+                        .scaleToFit(3000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                        .write(`${toPath}/${exportedImage}`, (err) => {
+                            if (err) reject(err);
+                            else resolve();
+                        });
+                });
+            }
+        );
         promises.push(promise);
     }
 
