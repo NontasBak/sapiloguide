@@ -7,7 +7,8 @@ import { ImagesToPDF } from "images-pdf";
 import { execSync } from "child_process";
 
 async function build() {
-    const lessons = await getChangedLessons();
+    const lessons = await fs.promises.readdir("./src/");
+    console.log(lessons)
 
     for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
@@ -65,6 +66,7 @@ async function resizeImages(fromPath, toPath) {
 
 async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
     console.log(fromPath);
+    
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
