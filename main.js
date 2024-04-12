@@ -4,9 +4,10 @@ import fs from "fs";
 import fsExtra from "fs-extra";
 import path from "path";
 import { ImagesToPDF } from "images-pdf";
+import { execSync } from "child_process";
 
 async function build() {
-    const lessons = await fs.promises.readdir("./src/");
+    const lessons = await getChangedLessons();
 
     for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
@@ -30,7 +31,6 @@ async function build() {
             `./exported_images/${lesson}`,
             `./resized_images/${lesson}`
         );
-
 
         convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
     }
@@ -64,19 +64,48 @@ async function resizeImages(fromPath, toPath) {
 }
 
 async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
+    console.log(fromPath);
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
         dark: true,
         pages: true,
-        name: `[${pageOrder}]-${path.parse(exam).name}`
+        name: `[${pageOrder}]-${path.parse(exam).name}`,
     });
 }
 
-//clear old images
+function getChangedLessons() {
+    return new Promise((resolve, reject) => {
+        // Get a list of changed .tldr files
+        const gitDiffOutput = execSync("git diff --name-only HEAD").toString();
+        const modifiedFiles = gitDiffOutput
+            .split("\n")
+            .filter((file) => file.endsWith(".tldr"));
+
+        // Get a list of new .tldr files
+        const gitLsFilesOutput = execSync(
+            "git ls-files --others --exclude-standard"
+        ).toString();
+        const newFiles = gitLsFilesOutput
+            .split("\n")
+            .filter((file) => file.endsWith(".tldr"));
+
+        // Combine the lists of changed and new files
+        const changedFiles = [...modifiedFiles, ...newFiles];
+
+        // Extract the lesson names from the changed file paths and remove duplicates
+        const changedLessons = [
+            ...new Set(
+                changedFiles.map((file) => path.dirname(file).split("/")[1])
+            ),
+        ];
+
+        resolve(changedLessons);
+    });
+}
+
+// clear old images
 fsExtra.emptyDirSync("./exported_images");
 fsExtra.emptyDirSync("./resized_images");
 
 build();
-
-
