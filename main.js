@@ -8,6 +8,7 @@ import { execSync } from "child_process";
 
 async function build() {
     const lessons = await getChangedLessons();
+    // const lessons = await fs.promises.readdir("./src/");
 
     for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
