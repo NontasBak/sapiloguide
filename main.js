@@ -12,12 +12,13 @@ async function build() {
     //check if 'npm run build' was run
     if (process.env.npm_lifecycle_event === "build") {
         lessons = await fs.promises.readdir("./src/");
-    } else { //'npm start'
+    } else {
+        //'npm start'
         lessons = await getChangedLessons();
 
         if (lessons.length === 0) {
             throw new Error(
-                "No changed .tldr files detected, did you mean to run 'npm run build'?"
+                `No changed .tldr files detected, did you mean to run 'npm run build'?`
             );
         }
     }
@@ -89,31 +90,53 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
 
 function getChangedLessons() {
     return new Promise((resolve, reject) => {
-        // Get a list of changed .tldr files
-        const gitDiffOutput = execSync("git diff --name-only HEAD").toString();
-        const modifiedFiles = gitDiffOutput
-            .split("\n")
-            .filter((file) => file.endsWith(".tldr"));
+        console.log(process.argv);
+        // No changed files detected through GH actions
+        if (process.argv.length === 2) {
+            // Get a list of changed .tldr files
+            const gitDiffOutput = execSync(
+                "git diff --name-only HEAD"
+            ).toString();
+            const modifiedFiles = gitDiffOutput
+                .split("\n")
+                .filter((file) => file.endsWith(".tldr"));
 
-        // Get a list of new .tldr files
-        const gitLsFilesOutput = execSync(
-            "git ls-files --others --exclude-standard"
-        ).toString();
-        const newFiles = gitLsFilesOutput
-            .split("\n")
-            .filter((file) => file.endsWith(".tldr"));
+            // Get a list of new .tldr files
+            const gitLsFilesOutput = execSync(
+                "git ls-files --others --exclude-standard"
+            ).toString();
+            const newFiles = gitLsFilesOutput
+                .split("\n")
+                .filter((file) => file.endsWith(".tldr"));
 
-        // Combine the lists of changed and new files
-        const changedFiles = [...modifiedFiles, ...newFiles];
+            const changedFiles = [...modifiedFiles, ...newFiles];
 
-        // Extract the lesson names from the changed file paths and remove duplicates
-        const changedLessons = [
-            ...new Set(
-                changedFiles.map((file) => path.dirname(file).split("/")[1])
-            ),
-        ];
+            // Extract the lesson names from the changed file paths and remove duplicates
+            const changedLessons = [
+                ...new Set(
+                    changedFiles.map((file) => path.dirname(file).split("/")[1])
+                ),
+            ];
 
-        resolve(changedLessons);
+            resolve(changedLessons);
+        } else {
+            const changedFiles = process.argv.filter((arg, index) => index > 1);
+            console.log(changedFiles)
+            const changedTldrFiles = changedFiles
+                .filter((file) => file.endsWith(".tldr"));
+
+            console.log(changedTldrFiles)
+            const changedLessons = [
+                ...new Set(
+                    changedTldrFiles.map(
+                        (file) => path.dirname(file).split("/")[1]
+                    )
+                ),
+            ];
+            console.log(changedLessons)
+
+            resolve(changedLessons);
+        }
     });
 }
 
