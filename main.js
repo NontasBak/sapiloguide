@@ -7,8 +7,21 @@ import { ImagesToPDF } from "images-pdf";
 import { execSync } from "child_process";
 
 async function build() {
-    const lessons = await getChangedLessons();
-    // const lessons = await fs.promises.readdir("./src/");
+    let lessons;
+
+    //check if 'npm run build' was run
+    if (process.env.npm_lifecycle_event === "build") {
+        lessons = await fs.promises.readdir("./src/");
+    } else { //'npm start'
+        lessons = await getChangedLessons();
+
+        if (lessons.length === 0) {
+            throw new Error(
+                "No changed .tldr files detected, did you mean to run 'npm run build'?"
+            );
+            return;
+        }
+    }
 
     for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
