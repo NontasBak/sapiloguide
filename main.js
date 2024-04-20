@@ -19,7 +19,6 @@ async function build() {
             throw new Error(
                 "No changed .tldr files detected, did you mean to run 'npm run build'?"
             );
-            return;
         }
     }
 
