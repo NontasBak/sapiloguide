@@ -13,7 +13,7 @@ async function build() {
     if (process.env.npm_lifecycle_event === "build") {
         lessons = await fs.promises.readdir("./src/");
     } else {
-        //'npm start'
+        // "npm start" or "node main.js <changed_files>" through GH actions
         lessons = await getChangedLessons();
 
         if (lessons.length === 0) {
@@ -94,7 +94,7 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
 
 function getChangedLessons() {
     return new Promise((resolve, reject) => {
-        // No changed files detected through GH actions
+        // No changed files detected through GH actions (or "npm start")
         if (process.argv.length === 2) {
             // Get a list of changed .tldr files
             const gitDiffOutput = execSync(
@@ -123,9 +123,19 @@ function getChangedLessons() {
 
             resolve(changedLessons);
         } else {
+            // For GH actions
             const changedFiles = process.argv.filter((arg, index) => index > 1);
-            const changedTldrFiles = changedFiles
-                .filter((file) => file.endsWith(".tldr"));
+            const changedTldrFiles = changedFiles.filter((file) =>
+                file.endsWith(".tldr")
+            );
+
+            const changedPDFs = changedFiles.filter((file) =>
+                file.endsWith(".pdf")
+            );
+
+            if(changedPDFs.length > 0) {
+                throw new Error("PDFs were changed, no need to rebuild through GH actions.");
+            }
 
             const changedLessons = [
                 ...new Set(
