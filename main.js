@@ -23,6 +23,8 @@ async function build() {
         }
     }
 
+    console.log("Building the lessons: ", lessons);
+
     for (let lesson of lessons) {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
         await fs.promises.mkdir(`./resized_images/${lesson}`);
@@ -48,6 +50,8 @@ async function build() {
 
         convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
     }
+
+    console.log("Finished building PDFs.");
 }
 
 function convertToPDF(fromPath, toPath) {
@@ -78,7 +82,7 @@ async function resizeImages(fromPath, toPath) {
 }
 
 async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
-    console.log(fromPath);
+    console.log("Exporting: ", fromPath);
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
@@ -90,7 +94,6 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
 
 function getChangedLessons() {
     return new Promise((resolve, reject) => {
-        console.log(process.argv);
         // No changed files detected through GH actions
         if (process.argv.length === 2) {
             // Get a list of changed .tldr files
@@ -121,11 +124,9 @@ function getChangedLessons() {
             resolve(changedLessons);
         } else {
             const changedFiles = process.argv.filter((arg, index) => index > 1);
-            console.log(changedFiles)
             const changedTldrFiles = changedFiles
                 .filter((file) => file.endsWith(".tldr"));
 
-            console.log(changedTldrFiles)
             const changedLessons = [
                 ...new Set(
                     changedTldrFiles.map(
@@ -133,7 +134,6 @@ function getChangedLessons() {
                     )
                 ),
             ];
-            console.log(changedLessons)
 
             resolve(changedLessons);
         }
