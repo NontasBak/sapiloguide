@@ -1,4 +1,4 @@
-import { tldrawToImage } from "@kitschpatrol/tldraw-cli";
+import { tldrawToImage } from "tldraw-cli";
 import Jimp from "jimp";
 import fs from "fs";
 import fsExtra from "fs-extra";
