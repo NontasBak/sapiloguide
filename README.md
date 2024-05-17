@@ -18,6 +18,7 @@ Contributions are welcome and appreciated. The notes are written in [tldraw](htt
 
 If you want to contribute to the code and/or build the pdf files yourself follow these steps:
 
+- Install node.js on your pc and run `npm install`
 - Run `npm run build` to build all of the pdf files (not recommended)
 - or run `npm start` and the code will automatically detect your changed .tldr files through git (make sure you haven't commited the files before you run it). This is recommended if you want to save time.
 
