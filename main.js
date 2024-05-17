@@ -48,7 +48,10 @@ async function build() {
             `./resized_images/${lesson}`
         );
 
-        convertToPDF(`./resized_images/${lesson}`, `./pdfs/${lesson}.pdf`);
+        convertToPDF(
+            `./resized_images/${lesson}`,
+            `./pdfs/${lesson}` + "_sapiloguide" + ".pdf"
+        );
     }
 
     console.log("Finished building PDFs.");
@@ -133,8 +136,10 @@ function getChangedLessons() {
                 file.endsWith(".pdf")
             );
 
-            if(changedPDFs.length > 0) {
-                throw new Error("PDFs were changed, no need to rebuild through GH actions.");
+            if (changedPDFs.length > 0) {
+                throw new Error(
+                    "PDFs were changed, no need to rebuild through GH actions."
+                );
             }
 
             const changedLessons = [
