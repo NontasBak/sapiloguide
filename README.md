@@ -1,7 +1,26 @@
 # sapiloguide
-The worst thmmy how-to-solve guide ever
+Past exam solutions for thmmy. You can find all the currently added solutions below:
 
-This automation tool includes the following:
-- converting .tldr files to png images
-- resizing the images so they share the same width
-- converting them to pdfs
+- [ΣΗΕ1 (Συστήματα Ηλεκτρικής Ενέργειας 1)](https://nontasbak.github.io/sapiloguide/pdfs/SHE1_sapiloguide.pdf)
+- [ΣΗΕ2 (Συστήματα Ηλεκτρικής Ενέργειας 2)](https://nontasbak.github.io/sapiloguide/pdfs/SHE2_sapiloguide.pdf)
+
+## Contribute
+
+Contributions are welcome and appreciated. The notes are written in [tldraw](https://www.tldraw.com/), there is also a VScode extension you can use. You need to follow these steps in order:
+
+- Download git on your pc
+- Fork the repository
+- Clone the fork you just made
+- Modify/Add the .tldr files in the src folder
+- Commit and push your changes
+- Make a pull request (PR)
+- Github actions will automatically build the pdfs once the PR is approved
+
+If you want to contribute to the code and/or build the pdf files yourself follow these steps:
+
+- Run `npm run build` to build all of the pdf files (not recommended)
+- or run `npm start` and the code will automatically detect your changed .tldr files through git (make sure you haven't commited the files before you run it). This is recommended if you want to save time.
+
+
+
+
