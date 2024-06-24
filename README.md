@@ -4,6 +4,7 @@ Past exam solutions for thmmy. You can find all the currently added solutions be
 
 -   [ΣΗΕ 1 (Συστήματα Ηλεκτρικής Ενέργειας 1)](https://nontasbak.github.io/sapiloguide/pdfs/SHE1_sapiloguide.pdf)
 -   [ΣΗΕ 2 (Συστήματα Ηλεκτρικής Ενέργειας 2)](https://nontasbak.github.io/sapiloguide/pdfs/SHE2_sapiloguide.pdf)
+-   [Τηλεπ 1 (Τηλεπικοινωνιακά Συστήματα 1)](https://nontasbak.github.io/sapiloguide/pdfs/Thlep1_sapiloguide.pdf)
 -   [Τηλεπ 2 (Τηλεπικοινωνιακά Συστήματα 2)](https://nontasbak.github.io/sapiloguide/pdfs/Thlep2_sapiloguide.pdf)
 -   [ΣΑΕ 2 (Συστήματα Αυτομάτου Ελέγχου 2)](https://nontasbak.github.io/sapiloguide/pdfs/SAE2_sapiloguide.pdf)
 
