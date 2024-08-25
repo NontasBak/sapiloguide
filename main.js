@@ -71,6 +71,7 @@ async function resizeImages(fromPath, toPath) {
                 return new Promise((resolve, reject) => {
                     image
                         .scaleToFit(3000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
+                        // .greyscale()
                         .write(`${toPath}/${exportedImage}`, (err) => {
                             if (err) reject(err);
                             else resolve();
@@ -89,7 +90,7 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
-        dark: true,
+        dark: true, //Comment this line for white BG
         pages: true,
         name: `[${pageOrder}]-${path.parse(exam).name}`,
     });
