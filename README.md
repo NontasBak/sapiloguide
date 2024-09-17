@@ -8,6 +8,7 @@ Past exam solutions for thmmy. You can find all the currently added solutions be
 -   [Τηλεπ 2 (Τηλεπικοινωνιακά Συστήματα 2)](https://nontasbak.github.io/sapiloguide/pdfs/Thlep2_sapiloguide.pdf)
 -   [ΣΑΕ 2 (Συστήματα Αυτομάτου Ελέγχου 2)](https://nontasbak.github.io/sapiloguide/pdfs/SAE2_sapiloguide.pdf)
 -   [Σήματα και Συστήματα](https://nontasbak.github.io/sapiloguide/pdfs/SignalsSystems_sapiloguide.pdf)
+-   [Θεωρία Πιθανοτήτων και Στατιστική](https://nontasbak.github.io/sapiloguide/pdfs/ProbStat_sapiloguide.pdf)
 
 ## Contribute
 
