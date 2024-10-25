@@ -21,7 +21,7 @@
 			"com.tldraw.shape.bookmark": 2,
 			"com.tldraw.shape.draw": 2,
 			"com.tldraw.shape.geo": 9,
-			"com.tldraw.shape.note": 7,
+			"com.tldraw.shape.note": 8,
 			"com.tldraw.shape.line": 5,
 			"com.tldraw.shape.frame": 0,
 			"com.tldraw.shape.arrow": 5,
@@ -71,8 +71,8 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 1515.8259236933338,
-			"y": 736.4946518691845,
+			"x": 1284.5948122389657,
+			"y": 781.3131267595304,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -252,9 +252,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 2330.4949792214575,
-			"y": 935.8156737362699,
-			"lastActivityTimestamp": 1726567208743,
+			"x": 2052.90621350517,
+			"y": 1008.0631876327934,
+			"lastActivityTimestamp": 1729881318478,
 			"meta": {}
 		},
 		{
@@ -264,7 +264,7 @@
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "default",
+				"type": "move",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -274,8 +274,8 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 2148,
-				"h": 1283.3333740234375
+				"w": 1058.2857666015625,
+				"h": 1162.05712890625
 			},
 			"insets": [
 				false,
@@ -290,7 +290,7 @@
 			"isChatting": false,
 			"highlightedUserIds": [],
 			"isFocused": true,
-			"devicePixelRatio": 1.5,
+			"devicePixelRatio": 2.1875,
 			"isCoarsePointer": false,
 			"isHoveringCanvas": true,
 			"openMenus": [],
@@ -308,7 +308,7 @@
 			"selectedShapeIds": [
 				"shape:QdMMoCRjKpu9aVC8V7s0s"
 			],
-			"hoveredShapeId": "shape:QdMMoCRjKpu9aVC8V7s0s",
+			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -318,9 +318,9 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": 1558.2543367980352,
-			"y": 957.8723451865603,
-			"z": 0.40115725474348896,
+			"x": 1768.5797362835624,
+			"y": 2716.1684990783992,
+			"z": 0.17303665375240704,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
