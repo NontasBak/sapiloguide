@@ -33,16 +33,10 @@ jobs:
               run: |
                   npm run build-bw ${{ steps.changed-files.outputs.all_changed_files }}
 
-            - name: Stash changes
-              run: git stash
-
-            - name: Checkout black-and-white branch
+            - name: Force checkout black-and-white branch
               run: |
                   git fetch origin black-and-white:black-and-white
-                  git checkout black-and-white
-
-            - name: Apply stashed changes
-              run: git stash pop
+                  git checkout -B black-and-white
 
             - name: Commit and Push Changes to black-and-white branch
               run: |
@@ -50,4 +44,4 @@ jobs:
                   git config --local user.name "GitHub Actions"
                   git add .
                   git commit -m "Automated build: update changed black and white PDFs"
-                  git push origin black-and-white
+                  git push origin black-and-white --force
