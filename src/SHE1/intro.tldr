@@ -71,8 +71,8 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 1521.6316511822554,
-			"y": 735.6443081985958,
+			"x": 1521.4901137855816,
+			"y": 734.0870944048474,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -252,9 +252,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 2137.1852521839746,
-			"y": 931.6060440983274,
-			"lastActivityTimestamp": 1729873503273,
+			"x": 2087.35199134135,
+			"y": 1024.4772585915534,
+			"lastActivityTimestamp": 1729875728615,
 			"meta": {}
 		},
 		{
@@ -264,7 +264,7 @@
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "move",
+				"type": "default",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -274,7 +274,7 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 1077.028564453125,
+				"w": 1111.3143310546875,
 				"h": 1162.05712890625
 			},
 			"insets": [
@@ -308,7 +308,7 @@
 			"selectedShapeIds": [
 				"shape:QdMMoCRjKpu9aVC8V7s0s"
 			],
-			"hoveredShapeId": null,
+			"hoveredShapeId": "shape:QdMMoCRjKpu9aVC8V7s0s",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
