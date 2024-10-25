@@ -70,6 +70,7 @@ async function resizeImages(fromPath, toPath) {
     const promises = [];
 
     for (let exportedImage of exportedImages) {
+        if(isBlackAndWhite && exportedImage === "[1]-intro-page-1") continue;
         const promise = Jimp.read(`${fromPath}/${exportedImage}`).then(
             (image) => {
                 return new Promise((resolve, reject) => {
@@ -79,7 +80,7 @@ async function resizeImages(fromPath, toPath) {
                         Jimp.RESIZE_BEZIER
                     );
                     if (isBlackAndWhite) {
-                        img = img.greyscale();
+                        img = img.greyscale().threshold({ max: 180 });
                     }
                     img.write(`${toPath}/${exportedImage}`, (err) => {
                         if (err) reject(err);
