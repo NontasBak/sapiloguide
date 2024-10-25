@@ -2,7 +2,7 @@ import { tldrawToImage } from "@kitschpatrol/tldraw-cli";
 import Jimp from "jimp";
 import fs from "fs";
 import fsExtra from "fs-extra";
-import path from "path";
+import path, { isAbsolute } from "path";
 import { ImagesToPDF } from "images-pdf";
 import { execSync } from "child_process";
 
@@ -99,7 +99,7 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
-        dark: `${!isBlackAndWhite}`, //Comment this line for white BG
+        dark: isBlackAndWhite ? false : true, //Comment this line for white BG
         pages: true,
         name: `[${pageOrder}]-${path.parse(exam).name}`,
     });
