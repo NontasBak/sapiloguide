@@ -2,8 +2,8 @@ name: Check Changed Files and Build Black and White PDFs
 
 on:
     push:
-      branches:
-        - main
+        branches:
+            - main
 
 jobs:
     detect_changes_and_build_bw:
@@ -40,4 +40,4 @@ jobs:
                   git checkout -b black-and-white
                   git add .
                   git commit -m "Automated build: update changed black and white PDFs"
-                  git push --set-upstream origin black-and-white
+                  git push --set-upstream origin black-and-white --force
