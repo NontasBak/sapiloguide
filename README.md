@@ -10,6 +10,9 @@ Past exam solutions for thmmy. You can find all the currently added solutions be
 -   [Σήματα και Συστήματα](https://nontasbak.github.io/sapiloguide/pdfs/SignalsSystems_sapiloguide.pdf)
 -   [Θεωρία Πιθανοτήτων και Στατιστική](https://nontasbak.github.io/sapiloguide/pdfs/ProbStat_sapiloguide.pdf)
 
+### Printable versions:
+If you want the black & white versions you can get them [here](https://github.com/NontasBak/sapiloguide/tree/black-and-white)
+
 ## Contribute
 
 Contributions are welcome and appreciated. The notes are written in [tldraw](https://www.tldraw.com/), there is also a VScode extension you can use. You need to follow these steps in order:
