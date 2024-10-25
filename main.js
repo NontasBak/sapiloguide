@@ -146,7 +146,7 @@ function getChangedLessons() {
                 file.endsWith(".pdf")
             );
 
-            if (changedPDFs.length > 0) {
+            if (changedPDFs.length > 0 && !isBlackAndWhite) {
                 throw new Error(
                     "PDFs were changed, no need to rebuild through GH actions."
                 );
