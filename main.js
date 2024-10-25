@@ -6,6 +6,8 @@ import path from "path";
 import { ImagesToPDF } from "images-pdf";
 import { execSync } from "child_process";
 
+const isBlackAndWhite = process.env.BW === "true";
+
 async function build() {
     let lessons;
 
@@ -13,7 +15,7 @@ async function build() {
     if (process.env.npm_lifecycle_event === "build") {
         lessons = await fs.promises.readdir("./src/");
     } else {
-        // "npm start" or "node main.js <changed_files>" through GH actions
+        // "npm start" or "node main.js <changed_files>" or "npm run build-bw <changed_files>" through GH actions
         lessons = await getChangedLessons();
 
         if (lessons.length === 0) {
@@ -50,7 +52,9 @@ async function build() {
 
         convertToPDF(
             `./resized_images/${lesson}`,
-            `./pdfs/${lesson}` + "_sapiloguide" + ".pdf"
+            `./${!isBlackAndWhite ? "pdfs/" : ""}${lesson}` +
+                (isBlackAndWhite ? "_sapiloguide_bw" : "_sapiloguide") +
+                ".pdf"
         );
     }
 
@@ -69,13 +73,18 @@ async function resizeImages(fromPath, toPath) {
         const promise = Jimp.read(`${fromPath}/${exportedImage}`).then(
             (image) => {
                 return new Promise((resolve, reject) => {
-                    image
-                        .scaleToFit(3000, Jimp.AUTO, Jimp.RESIZE_BEZIER)
-                        // .greyscale()
-                        .write(`${toPath}/${exportedImage}`, (err) => {
-                            if (err) reject(err);
-                            else resolve();
-                        });
+                    let img = image.scaleToFit(
+                        3000,
+                        Jimp.AUTO,
+                        Jimp.RESIZE_BEZIER
+                    );
+                    if (isBlackAndWhite) {
+                        img = img.greyscale();
+                    }
+                    img.write(`${toPath}/${exportedImage}`, (err) => {
+                        if (err) reject(err);
+                        else resolve();
+                    });
                 });
             }
         );
@@ -90,7 +99,7 @@ async function convertTldrToImages(fromPath, toPath, pageOrder, exam) {
     const imagePath = await tldrawToImage(`${fromPath}`, {
         format: "png",
         output: `${toPath}`,
-        dark: true, //Comment this line for white BG
+        dark: `${!isBlackAndWhite}`, //Comment this line for white BG
         pages: true,
         name: `[${pageOrder}]-${path.parse(exam).name}`,
     });

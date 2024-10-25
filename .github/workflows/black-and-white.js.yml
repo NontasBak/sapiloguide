@@ -1,0 +1,43 @@
+name: Check Changed Files and Build Black and White PDFs
+
+on:
+    push:
+      branches:
+        - main
+
+jobs:
+    detect_changes_and_build_bw:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v4
+
+            - name: Get changed files
+              id: changed-files
+              uses: tj-actions/changed-files@v44
+              with:
+                  since_last_remote_commit: true
+
+            - name: List all changed files
+              env:
+                  ALL_CHANGED_FILES: ${{ steps.changed-files.outputs.all_changed_files }}
+              run: |
+                  for file in ${ALL_CHANGED_FILES}; do
+                    echo "$file was changed"
+                  done
+
+            - name: Install dependencies
+              run: npm install
+
+            - name: Run JavaScript code to build black and white PDFs
+              run: |
+                  npm run build-bw ${{ steps.changed-files.outputs.all_changed_files }}
+
+            - name: Commit and Push Changes to black-and-white branch
+              run: |
+                  git config --local user.email "actions@github.com"
+                  git config --local user.name "GitHub Actions"
+                  git checkout -b black-and-white
+                  git add .
+                  git commit -m "Automated build: update changed black and white PDFs"
+                  git push --set-upstream origin black-and-white
