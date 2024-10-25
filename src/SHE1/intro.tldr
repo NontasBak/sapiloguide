@@ -71,8 +71,8 @@
 			"typeName": "shape"
 		},
 		{
-			"x": 1523.7556194233705,
-			"y": 730.9334151273451,
+			"x": 1521.2839830930345,
+			"y": 733.0959594199312,
 			"rotation": 0,
 			"isLocked": false,
 			"opacity": 1,
@@ -252,9 +252,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 1863.7694746442596,
-			"y": 958.0288774817316,
-			"lastActivityTimestamp": 1729868720864,
+			"x": 1904.9623135115273,
+			"y": 928.3699015006994,
+			"lastActivityTimestamp": 1729869482349,
 			"meta": {}
 		},
 		{
