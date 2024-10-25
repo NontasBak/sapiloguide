@@ -37,7 +37,9 @@ jobs:
               run: |
                   git config --local user.email "actions@github.com"
                   git config --local user.name "GitHub Actions"
-                  git checkout -b black-and-white
+                  git fetch origin black-and-white:black-and-white
+                  git checkout black-and-white
+                  git rebase origin/black-and-white
                   git add .
                   git commit -m "Automated build: update changed black and white PDFs"
-                  git push --set-upstream origin black-and-white --force
+                  git push origin black-and-white
