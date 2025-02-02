@@ -31,7 +31,8 @@ async function build() {
         await fs.promises.mkdir(`./exported_images/${lesson}`);
         await fs.promises.mkdir(`./resized_images/${lesson}`);
 
-        const exams = await fs.promises.readdir(`./src/${lesson}/`);
+        let exams = await fs.promises.readdir(`./src/${lesson}/`);
+        exams = exams.filter(exam => exam.endsWith(".tldr"));
 
         let pageOrder = exams.length;
         for (let exam of exams) {
