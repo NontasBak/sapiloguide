@@ -53,7 +53,7 @@ module HW1_June24_Ex2_tb ();
     reg [3:0] sel;
     wire out;
     
-    mux15to1 DUT (.inp(inp), .sel(sel), .out(out));
+    HW1_June24_Ex2 DUT (.inp(inp), .sel(sel), .out(out));
     
     initial begin
         // Test vector
@@ -70,7 +70,7 @@ endmodule
 // File: HW1_June24_Ex3.v
 // ------------------------------------------------
 module HW1_June24_Ex3 (
-    input X, clk, rst_n
+    input X, clk, rst_n,
     output reg Y
 );
 
@@ -92,7 +92,7 @@ module HW1_June24_Ex3 (
 
     always @(current_state or X) begin
         case (current_state)
-            S0: next_state = X ? S1 : S0;
+            S0: next_state = (X ? S1 : S0);
             S1: next_state = S2;
             S2: next_state = S3;
             S3: next_state = S4;
@@ -120,7 +120,7 @@ module HW1_June24_Ex3_tb ();
     reg clk, rst_n, X;
     wire Y;
 
-    fsm DUT (
+    HW1_June24_Ex3 DUT (
         .X(X),
         .clk(clk),
         .rst_n(rst_n),

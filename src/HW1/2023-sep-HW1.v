@@ -1,8 +1,8 @@
 // File: HW1_Sept23_Ex4.v
 module HW1_Sept23_Ex4 (
-    output Y,
+    output reg Y,
     input X, clk, rst
-)
+);
 
     reg current_state, next_state;
 
@@ -23,11 +23,11 @@ module HW1_Sept23_Ex4 (
     always @(current_state or X)
         begin
             case (current_state)
-                S0: X ? S0 : S1;
-                S1: X ? S2 : S1;
-                S2: X ? S2 : S3;
-                S3: X ? S0 : S3;
-                default: S0;
+                S0: next_state = (X ? S0 : S1);
+                S1: next_state = (X ? S2 : S1);
+                S2: next_state = (X ? S2 : S3);
+                S3: next_state = (X ? S0 : S3);
+                default: next_state = S0;
             endcase
         end
 

@@ -1,6 +1,6 @@
 // File: HW1_Sept24_Ex3.v
 module HW1_Sept24_Ex3 (
-    output Y,
+    output reg Y,
     input X, clk, rst_n
 );
 
@@ -21,22 +21,10 @@ module HW1_Sept24_Ex3 (
     always @(current_state, X)
         begin
             case (current_state)
-                S0: if(X == 1'b1)
-                        next_state = S2;
-                    else
-                        next_state = S1;
-                S1: if(X == 1'b1)
-                        next_state = S3;
-                    else
-                        next_state = S2;
-                S2: if(X == 1'b1)
-                        next_state = S3;
-                    else
-                        next_state = S1;
-                S3: if(X == 1'b1)
-                        next_state = S0;
-                    else
-                        next_state = S2;
+                S0: next_state = (X ? S2 : S1);
+                S1: next_state = (X ? S3 : S2);
+                S2: next_state = (X ? S3 : S1);
+                S3: next_state = (X ? S0 : S2);
                 default: next_state = S0;
             endcase
         end
@@ -44,25 +32,14 @@ module HW1_Sept24_Ex3 (
     always @ (current_state or X)
         begin
             case (current_state)
-                S0: if(X == 1'b1)
-                        Y = 1'b0;
-                    else
-                        Y = 1'b1;
-                S1: if(X == 1'b1)
-                        Y = 1'b1;
-                    else
-                        Y = 1'b0;
-                S2: if(X == 1'b1)
-                        Y = 1'b1;
-                    else
-                        Y = 1'b0;
-                S3: if(X == 1'b1)
-                        Y = 1'b0;
-                    else
-                        Y = 1'b1;
+                S0: Y = (X ? 1'b0 : 1'b1);
+                S1: Y = (X ? 1'b1 : 1'b0);
+                S2: Y = (X ? 1'b1 : 1'b0);
+                S3: Y = (X ? 1'b0 : 1'b1);
                 default: Y = 1'b0;
             endcase
         end
+endmodule
 
 // ------------------------------------------------
 // File: HW1_Sept24_Ex3_tb.v
@@ -132,8 +109,4 @@ module HW1_Sept24_Ex3_tb ();
             #5 X = 0;
             #5 $display("%b | %b", X, Y); // Expected Y = 1
         end
-
-
-
-    
-            
+endmodule
