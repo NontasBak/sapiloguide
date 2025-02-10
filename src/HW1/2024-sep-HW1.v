@@ -81,32 +81,32 @@ module HW1_Sept24_Ex3_tb ();
             // Test Cases
             // S0 --> S1 
             X = 0;
-            #21 $display("%b | %b", X, Y); // Expected Y = 1
+            #35 $display("%b | %b", X, Y); // Expected Y = 1
 
             // S1 --> S2 (X = 0, unchanged)
-            #10 $display("%b | %b", X, Y); // Expected Y = 0
+            #20 $display("%b | %b", X, Y); // Expected Y = 0
 
             // S2 --> S3
-            #5 X = 1;
-            #5 $display("%b | %b", X, Y); // Expected Y = 1
+            #10 X = 1;
+            #10 $display("%b | %b", X, Y); // Expected Y = 1
 
             // S3 --> S0 (X = 1, unchanged)
-            #10 $display("%b | %b", X, Y); // Expected Y = 0
+            #20 $display("%b | %b", X, Y); // Expected Y = 0
 
             // S0 --> S2
-            #5 X = 1;
-            #5 $display("%b | %b", X, Y); // Expected Y = 0
+            #10 X = 1;
+            #10 $display("%b | %b", X, Y); // Expected Y = 0
 
             // S2 --> S1
-            #5 X = 0;
-            #5 $display("%b | %b", X, Y); // Expected Y = 0
+            #10 X = 0;
+            #10 $display("%b | %b", X, Y); // Expected Y = 0
 
             // S1 --> S3
-            #5 X = 1;
-            #5 $display("%b | %b", X, Y); // Expected Y = 1
+            #10 X = 1;
+            #10 $display("%b | %b", X, Y); // Expected Y = 1
 
             // S3 --> S2
-            #5 X = 0;
-            #5 $display("%b | %b", X, Y); // Expected Y = 1
+            #10 X = 0;
+            #10 $display("%b | %b", X, Y); // Expected Y = 1
         end
 endmodule

@@ -78,8 +78,7 @@ module HW1_June24_Ex3 (
               S1 = 3'b001, 
               S2 = 3'b010, 
               S3 = 3'b011, 
-              S4 = 3'b100, 
-              S5 = 3'b101;
+              S4 = 3'b100;
 
     reg [2:0] current_state, next_state;
 
@@ -96,8 +95,7 @@ module HW1_June24_Ex3 (
             S1: next_state = S2;
             S2: next_state = S3;
             S3: next_state = S4;
-            S4: next_state = S5;
-            S5: next_state = S0;
+            S4: next_state = S0;
             default: next_state = S0;
         endcase
     end
@@ -131,38 +129,33 @@ module HW1_June24_Ex3_tb ();
         begin
             // Initialize clk and reset
             clk = 0;
-            rst_n = 0;
+            rst_n = 1;
 
             // Reset
             #5 rst_n = 0;
-            #10 rst_n = 0;
+            #10 rst_n = 1;
         end
 
     always
         begin
-            #10 clk = ~clk;
+            // Clock cycle: 20ns
+            #10 clk = ~clk; 
         end
 
     initial 
         begin
             X = 0;
             
-            #25 X = 1;       // Trigger the FSM
+            #25 X = 1; // Trigger the FSM
             $display("Y: %b", Y);
 
             for (integer i = 0; i < 8; i = i + 1) begin
-                #10 $display("Y: %b", Y);
+                #20 $display("Y: %b", Y);
             end
-            // Expected output: 0 1 1 1 0 0 0 0
+            // Expected output: 0 1 1 1 0 0 0 0 0
 
-            #100 $finish;
+            #150 $finish;
         end
-
-    always 
-        begin
-            #10 $display("Y: %b", Y);
-        end
-
 endmodule
 
 
