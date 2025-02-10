@@ -2357,9 +2357,9 @@
 			"props": {
 				"color": "light-blue",
 				"size": "xl",
-				"w": 1613.1771240234375,
+				"w": 1562.34375,
 				"text": "Εφόσον δεν έχουμε εξόδους, μάλλον Moore FSM\nΧρειαζόμαστε 4 FF αφού η κάθε κατάσταση θα έχει 4 bits (one-hot encoding)",
-				"font": "draw",
+				"font": "sans",
 				"textAlign": "start",
 				"autoSize": true,
 				"scale": 1
@@ -5140,21 +5140,22 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 1098.4872684128572,
-			"y": 1003.2667503478297,
-			"lastActivityTimestamp": 1739221615707,
+			"x": 1832.8932821875544,
+			"y": 354.1253049719994,
+			"lastActivityTimestamp": 1739226691194,
 			"meta": {}
 		},
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
 			"stylesForNextShape": {
-				"tldraw:color": "light-blue"
+				"tldraw:color": "light-blue",
+				"tldraw:font": "sans"
 			},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
-				"type": "move",
+				"type": "default",
 				"rotation": 0
 			},
 			"isFocusMode": false,
@@ -5164,7 +5165,7 @@
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
-				"w": 2254,
+				"w": 1565.3333740234375,
 				"h": 1283.3333740234375
 			},
 			"insets": [
@@ -5196,9 +5197,9 @@
 			"editingShapeId": null,
 			"croppingShapeId": null,
 			"selectedShapeIds": [
-				"shape:xoQJrvVoYgfwxhdSEz3aX"
+				"shape:coCE0R5VTrmWtYvrN5ixp"
 			],
-			"hoveredShapeId": null,
+			"hoveredShapeId": "shape:8BYu5UkwI-44ncyJxO32j",
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
 			"focusedGroupId": null,
@@ -5208,9 +5209,9 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": 41.82259474192995,
-			"y": -62.11568589271627,
-			"z": 0.9272333847031835,
+			"x": 349.8334127310752,
+			"y": 98.65845932241484,
+			"z": 0.6691936060741345,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"
