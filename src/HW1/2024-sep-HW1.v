@@ -81,7 +81,7 @@ module HW1_Sept24_Ex3_tb ();
             // Test Cases
             // S0 --> S1 
             X = 0;
-            #35 $display("%b | %b", X, Y); // Expected Y = 1
+            #25 $display("%b | %b", X, Y); // Expected Y = 1
 
             // S1 --> S2 (X = 0, unchanged)
             #20 $display("%b | %b", X, Y); // Expected Y = 0
