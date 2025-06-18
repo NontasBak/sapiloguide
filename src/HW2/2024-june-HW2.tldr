@@ -3998,7 +3998,7 @@
 				"color": "light-red",
 				"size": "l",
 				"w": 1180.9457776809431,
-				"text": "p3 FAIL @ 130ns / started @ 70ns\np2 FAIL @ 170ns / started @ 90ns\np2 PASS @ 190ns / started @ 110ns",
+				"text": "p3 FAIL @ 130ns / started @ 70ns\np3 FAIL @ 170ns / started @ 90ns\np3 PASS @ 190ns / started @ 110ns",
 				"font": "mono",
 				"textAlign": "start",
 				"autoSize": true,
@@ -4011,9 +4011,9 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 831.3736951799406,
-			"y": 1873.6451256554606,
-			"lastActivityTimestamp": 1750259071793,
+			"x": 934.2919014697834,
+			"y": 1988.7828637800071,
+			"lastActivityTimestamp": 1750269951942,
 			"meta": {}
 		},
 		{
@@ -4064,9 +4064,11 @@
 			"typeName": "instance"
 		},
 		{
-			"editingShapeId": null,
+			"editingShapeId": "shape:D3kXMvZdBzoh3RszuNEls",
 			"croppingShapeId": null,
-			"selectedShapeIds": [],
+			"selectedShapeIds": [
+				"shape:D3kXMvZdBzoh3RszuNEls"
+			],
 			"hoveredShapeId": null,
 			"erasingShapeIds": [],
 			"hintingShapeIds": [],
@@ -4090,9 +4092,9 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": 650.8887042645849,
-			"y": 465.75176808259096,
-			"z": 0.42560420944067057,
+			"x": 734.7451361199808,
+			"y": 673.4267569243917,
+			"z": 0.3830437884966035,
 			"meta": {},
 			"id": "camera:page:beEcKJ3UHayzSHKB3sHRU",
 			"typeName": "camera"
