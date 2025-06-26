@@ -3998,7 +3998,7 @@
 				"color": "light-red",
 				"size": "l",
 				"w": 1180.9457776809431,
-				"text": "p3 FAIL @ 130ns / started @ 70ns\np3 FAIL @ 170ns / started @ 90ns\np3 PASS @ 190ns / started @ 110ns",
+				"text": "p3 FAIL @ 130ns / started @ 70ns\np3 FAIL @ 170ns / started @ 90ns\np3 PASS @ 190ns / started @ 110ns\np3 PASS @ 190ns / started @ 150ns",
 				"font": "mono",
 				"textAlign": "start",
 				"autoSize": true,
@@ -4011,17 +4011,15 @@
 		{
 			"id": "pointer:pointer",
 			"typeName": "pointer",
-			"x": 934.2919014697834,
-			"y": 1988.7828637800071,
-			"lastActivityTimestamp": 1750269951942,
+			"x": 1561.5518923127497,
+			"y": 1765.4917985054235,
+			"lastActivityTimestamp": 1750963611568,
 			"meta": {}
 		},
 		{
 			"followingUserId": null,
 			"opacityForNextShape": 1,
-			"stylesForNextShape": {
-				"tldraw:size": "l"
-			},
+			"stylesForNextShape": {},
 			"brush": null,
 			"scribbles": [],
 			"cursor": {
@@ -4031,7 +4029,7 @@
 			"isFocusMode": false,
 			"exportBackground": true,
 			"isDebugMode": false,
-			"isToolLocked": true,
+			"isToolLocked": false,
 			"screenBounds": {
 				"x": 0,
 				"y": 0,
@@ -4092,17 +4090,17 @@
 			"typeName": "instance_page_state"
 		},
 		{
-			"x": 734.7451361199808,
-			"y": 673.4267569243917,
-			"z": 0.3830437884966035,
+			"x": 550.677487178395,
+			"y": 743.5552390719099,
+			"z": 0.38729559244333933,
 			"meta": {},
 			"id": "camera:page:beEcKJ3UHayzSHKB3sHRU",
 			"typeName": "camera"
 		},
 		{
-			"x": 5088.956507136554,
-			"y": 119.79278692311527,
-			"z": 0.29371571430957205,
+			"x": 4602.226727739061,
+			"y": -835.055571255328,
+			"z": 0.267274455917694,
 			"meta": {},
 			"id": "camera:page:page",
 			"typeName": "camera"

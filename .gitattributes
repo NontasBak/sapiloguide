@@ -1,1 +1,2 @@
 *.v -linguist-detectable
+*.sv -linguist-detectable
