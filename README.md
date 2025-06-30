@@ -10,6 +10,7 @@ Past exam solutions for thmmy. You can find all the currently added solutions be
 -   [Σήματα και Συστήματα](https://nontasbak.github.io/sapiloguide/pdfs/SignalsSystems_sapiloguide.pdf)
 -   [Θεωρία Πιθανοτήτων και Στατιστική](https://nontasbak.github.io/sapiloguide/pdfs/ProbStat_sapiloguide.pdf)
 -   [HW1 (Ψηφιακά Συστήματα HW σε Χαμηλά Επίπεδα Λογικής 1)](https://nontasbak.github.io/sapiloguide/pdfs/HW1_sapiloguide.pdf)
+-   [HW2 (Ψηφιακά Συστήματα HW σε Χαμηλά Επίπεδα Λογικής 2)](https://nontasbak.github.io/sapiloguide/pdfs/HW2_sapiloguide.pdf)
 
 ### Printable versions:
 If you want the black & white versions you can get them [here](https://github.com/NontasBak/sapiloguide/tree/black-and-white)
