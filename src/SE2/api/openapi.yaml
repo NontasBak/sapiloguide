@@ -1,0 +1,364 @@
+openapi: 3.0.0
+info:
+  title: Bookstore Management API
+  description: "API for managing books, authors, and categories"
+  version: 1.0.0
+servers:
+- url: /
+paths:
+  /books:
+    get:
+      summary: Get all books
+      operationId: booksGET
+      responses:
+        "200":
+          description: A list of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Book"
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Add a new book
+      operationId: booksPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookInput"
+        required: true
+      responses:
+        "201":
+          description: The created book
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+      x-swagger-router-controller: Default
+  /books/{bookId}:
+    get:
+      summary: Get details of a specific book
+      operationId: booksBookIdGET
+      parameters:
+      - name: bookId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Details of the specified book
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+      x-swagger-router-controller: Default
+    put:
+      summary: Update a book
+      operationId: booksBookIdPUT
+      parameters:
+      - name: bookId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BookInput"
+        required: true
+      responses:
+        "200":
+          description: The updated book
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Book"
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete a book
+      operationId: booksBookIdDELETE
+      parameters:
+      - name: bookId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: Book deleted successfully
+      x-swagger-router-controller: Default
+  /authors:
+    get:
+      summary: Get all authors
+      operationId: authorsGET
+      responses:
+        "200":
+          description: A list of authors
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Author"
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Add a new author
+      operationId: authorsPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorInput"
+        required: true
+      responses:
+        "201":
+          description: The created author
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+      x-swagger-router-controller: Default
+  /authors/{authorId}:
+    get:
+      summary: Get details of a specific author
+      operationId: authorsAuthorIdGET
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Details of the specified author
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+      x-swagger-router-controller: Default
+    put:
+      summary: Update an author
+      operationId: authorsAuthorIdPUT
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AuthorInput"
+        required: true
+      responses:
+        "200":
+          description: The updated author
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Author"
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete an author
+      operationId: authorsAuthorIdDELETE
+      parameters:
+      - name: authorId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: Author deleted successfully
+      x-swagger-router-controller: Default
+  /categories:
+    get:
+      summary: Get all categories
+      operationId: categoriesGET
+      responses:
+        "200":
+          description: A list of categories
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Category"
+                x-content-type: application/json
+      x-swagger-router-controller: Default
+    post:
+      summary: Add a new category
+      operationId: categoriesPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CategoryInput"
+        required: true
+      responses:
+        "201":
+          description: The created category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+      x-swagger-router-controller: Default
+  /categories/{categoryId}:
+    get:
+      summary: Get details of a specific category
+      operationId: categoriesCategoryIdGET
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Details of the specified category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+      x-swagger-router-controller: Default
+    put:
+      summary: Update a category
+      operationId: categoriesCategoryIdPUT
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CategoryInput"
+        required: true
+      responses:
+        "200":
+          description: The updated category
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Category"
+      x-swagger-router-controller: Default
+    delete:
+      summary: Delete a category
+      operationId: categoriesCategoryIdDELETE
+      parameters:
+      - name: categoryId
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "204":
+          description: Category deleted successfully
+      x-swagger-router-controller: Default
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        title:
+          type: string
+        author_id:
+          type: integer
+          format: int64
+        category_id:
+          type: integer
+          format: int64
+        published_year:
+          type: integer
+          format: int32
+      example:
+        category_id: 1
+        published_year: 5
+        id: 0
+        title: title
+        author_id: 6
+    BookInput:
+      type: object
+      properties:
+        title:
+          type: string
+        author_id:
+          type: integer
+          format: int64
+        category_id:
+          type: integer
+          format: int64
+        published_year:
+          type: integer
+          format: int32
+    Author:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        name: name
+        id: 0
+    AuthorInput:
+      type: object
+      properties:
+        name:
+          type: string
+    Category:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+      example:
+        name: name
+        id: 0
+    CategoryInput:
+      type: object
+      properties:
+        name:
+          type: string
